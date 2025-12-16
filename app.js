@@ -302,3 +302,4 @@ categoryFilter.addEventListener('change', applyFilters);
 // =======================
 renderProducts(products);
 showScreen('login');
+
