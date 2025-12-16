@@ -14,8 +14,12 @@
         <h1 class="app-title">Ábréme Ya</h1>
         <p class="app-sub">Inicia sesión para comprar</p>
         <form id="auth-form" class="form">
+          <label for="email">Correo electrónico</label>
           <input id="email" type="email" placeholder="Correo electrónico" required />
+
+          <label for="password">Contraseña</label>
           <input id="password" type="password" placeholder="Contraseña" required />
+
           <button type="submit" class="btn primary">Iniciar</button>
         </form>
       </section>
@@ -30,12 +34,12 @@
           </div>
         </div>
         <form id="address-form" class="address-form">
-          <label class="label">Dirección de entrega (Antioquia, Caucasia)</label>
+          <label for="addr-carrera">Dirección de entrega (Antioquia, Caucasia)</label>
           <input id="addr-carrera" type="text" placeholder="Carrera" required />
           <input id="addr-calle" type="text" placeholder="Calle" required />
           <input id="addr-num" type="text" placeholder="Número" />
           <input id="addr-detalle" type="text" placeholder="Detalle (opcional)" />
-          <button class="btn primary">Guardar dirección</button>
+          <button type="submit" class="btn primary">Guardar dirección</button>
         </form>
       </section>
 
@@ -47,16 +51,16 @@
             <div id="user-display" class="small-note">👤 <span id="user-display-text">Usuario</span></div>
           </div>
           <div style="display:flex; gap:8px; align-items:center;">
-            <button id="change-address-btn" class="btn">Cambiar dirección</button>
-            <button id="signout-btn" class="btn">Cerrar sesión</button>
-            <button id="cart-btn" class="cart-icon">🛒 <span id="cart-count">0</span></button>
+            <button id="change-address-btn" type="button" class="btn">Cambiar dirección</button>
+            <button id="signout-btn" type="button" class="btn">Cerrar sesión</button>
+            <button id="cart-btn" type="button" class="cart-icon">🛒 <span id="cart-count">0</span></button>
           </div>
         </div>
 
         <!-- Barra de búsqueda -->
         <div class="search-bar">
           <input id="search-input" type="text" placeholder="Buscar productos..." />
-          <button id="clear-search" class="clear-btn">✕</button>
+          <button id="clear-search" type="button" class="clear-btn">✕</button>
         </div>
 
         <div id="products-grid" class="products-grid"></div>
@@ -64,31 +68,32 @@
 
       <!-- Pantalla Carrito -->
       <section id="screen-cart" class="screen hidden white-bg">
-        <button id="back-to-products-from-cart" class="btn">← Volver al catálogo</button>
+        <button id="back-to-products-from-cart" type="button" class="btn">← Volver al catálogo</button>
         <h3>Tu carrito</h3>
         <div id="cart-items"></div>
         <div class="modal-footer">
-          <button id="checkout-all" class="btn primary">Comprar todo</button>
-          <button id="empty-cart" class="btn">Vaciar carrito</button>
+          <button id="checkout-all" type="button" class="btn primary">Comprar todo</button>
+          <button id="empty-cart" type="button" class="btn">Vaciar carrito</button>
         </div>
       </section>
 
       <!-- Pantalla 4: Detalles del producto -->
       <section id="screen-detail" class="screen hidden white-bg">
         <div class="modal-content">
-          <button id="back-to-products" class="btn">← Volver al catálogo</button>
+          <button id="back-to-products" type="button" class="btn">← Volver al catálogo</button>
           <h3 id="detail-title"></h3>
-          <img id="detail-image" src="" alt="" class="modal-img" />
+          <img id="detail-image" src="" alt="Imagen del producto" class="modal-img" />
           <p id="detail-description"></p>
           <p id="detail-price" class="modal-price"></p>
           <div class="modal-footer">
-            <button id="detail-add" class="btn primary">Agregar al carrito</button>
-            <button id="detail-buy" class="btn">Comprar ahora</button>
+            <button id="detail-add" type="button" class="btn primary">Agregar al carrito</button>
+            <button id="detail-buy" type="button" class="btn">Comprar ahora</button>
           </div>
         </div>
       </section>
     </main>
   </div>
+  <!-- Archivo JS externo -->
   <script src="app.js"></script>
 </body>
 </html>
