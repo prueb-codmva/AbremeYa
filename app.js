@@ -1,30 +1,45 @@
+// =======================
+// Pantallas
+// =======================
 const screens = {
   login: document.getElementById('screen-login'),
   address: document.getElementById('screen-address'),
   products: document.getElementById('screen-products'),
   cart: document.getElementById('screen-cart'),
-  detail: document.getElementById('screen-detail')
+  detail: document.getElementById('screen-detail'),
+  user: document.getElementById('screen-user')
 };
 
+// =======================
+// Elementos principales
+// =======================
 const authForm = document.getElementById('auth-form');
 const addressForm = document.getElementById('address-form');
 const productsGrid = document.getElementById('products-grid');
 const cartItems = document.getElementById('cart-items');
 const cartCount = document.getElementById('cart-count');
 
+const searchInput = document.getElementById('search-input');
+const clearBtn = document.getElementById('clear-search');
+const categoryFilter = document.getElementById('category-filter');
+
+const backFromCart = document.getElementById('back-to-products-from-cart');
+const backFromDetail = document.getElementById('back-to-products');
+const backFromUser = document.getElementById('back-to-products-from-user');
+const userBtn = document.getElementById('user-btn');
+
+const userAddressText = document.getElementById('user-address-text');
+const userEmailText = document.getElementById('user-email-text');
+
+// =======================
+// Variables de estado
+// =======================
 let currentUser = null;
 let currentAddress = null;
 let cart = [];
+
 let products = [
-{
-        id: 24,
-        name: "iPhone 17 Pro Max",
-        description: "Teléfono inteligente de última generación con cámara de 48MP y batería de larga duración",
-        price: 9000000,
-        category: "telefonos",
-        img: "https://celularesimportados.com.co/wp-content/uploads/2025/09/iphone-17-Pro-256-GB-Naranja-cosmico.jpg"
-    },
-    {
+        {
         id: 1,
         name: "Licuadora",
         description: "Licuadora eléctrica de alta potencia para preparar jugos y batidos",
@@ -135,90 +150,28 @@ let products = [
         price: 180000,
         category: "ropa",
         img: "https://example.com/chaqueta.jpg"
-    },
-    {
-        id: 15,
-        name: "Tenis deportivos",
-        description: "Tenis cómodos para correr y entrenar",
-        price: 200000,
-        category: "ropa",
-        img: "https://assets.adidas.com/images/w_600,f_auto,q_auto/5643ea9848e94c1da869fd176bd19128_9366/Tenis_Superstar_Blanco_IH8659_01_standard.jpg"
-    },
-    {
-        id: 16,
-        name: "Sombrero vueltiao",
-        description: "Sombrero tradicional colombiano tejido a mano",
-        price: 95000,
-        category: "accesorios",
-        img: "https://example.com/sombrero.jpg"
-    },
-    {
-        id: 17,
-        name: "Sudadera",
-        description: "Sudadera deportiva para uso casual",
-        price: 130000,
-        category: "ropa",
-        img: "https://example.com/sudadera.jpg"
-    },
-    {
-        id: 18,
-        name: "Camisa formal",
-        description: "Camisa elegante para ocasiones especiales",
-        price: 160000,
-        category: "ropa",
-        img: "https://example.com/camisa.jpg"
-    },
-    {
-        id: 19,
-        name: "Vestido casual",
-        description: "Vestido ligero para uso diario",
-        price: 140000,
-        category: "ropa",
-        img: "https://m.media-amazon.com/images/I/717jrKFh9yL._AC_UY1000_.jpg"
-    },
-    {
-        id: 20,
-        name: "Balón de fútbol",
-        description: "Balón oficial para entrenamientos y partidos",
-        price: 80000,
-        category: "deportes",
-        img: "https://assets.adidas.com/images/w_600,f_auto,q_auto/da13fc00f4c04adea8ce517804ec8bd3_9366/Balon_League_de_la_Copa_Mundial_de_la_FIFA_2026tm_Blanco_JD8045.jpg"
-    },
-    {
-        id: 21,
-        name: "Muñeca tipo Barbie",
-        description: "Muñeca articulada con accesorios incluidos",
-        price: 95000,
-        category: "juguetes",
-        img: "https://i.pinimg.com/474x/eb/37/b3/eb37b32355bc617a78b53ed485783dba.jpg"
-    },
-    {
-        id: 22,
-        name: "Carrito a control remoto",
-        description: "Carro eléctrico con control remoto para niños",
-        price: 120000,
-        category: "juguetes",
-        img: "https://pbs.twimg.com/media/FircqQOXEAACPmx.jpg"
-    },
-    {
-        id: 23,
-        name: "Juego de bloques tipo Lego",
-        description: "Set de bloques para construir y estimular la creatividad",
-        price: 150000,
-        category: "juguetes",
-        img: "https://pyrocol.net/wp-content/uploads/2019/11/VOLADOR-5G-2025-Photoroom-1000x743.jpg"
-    }
+    },,{ id: 24, name: "iPhone 17 Pro Max", description: "Teléfono inteligente de última generación con cámara de 48MP y batería de larga duración", price: 9000000, category: "telefonos", img: "https://celularesimportados.com.co/wp-content/uploads/2025/09/iphone-17-Pro-256-GB-Naranja-cosmico.jpg" },
+  { id: 15, name: "Tenis deportivos", description: "Tenis cómodos para correr y entrenar", price: 200000, category: "ropa", img: "https://assets.adidas.com/images/w_600,f_auto,q_auto/5643ea9848e94c1da869fd176bd19128_9366/Tenis_Superstar_Blanco_IH8659_01_standard.jpg" },
+  { id: 16, name: "Sombrero vueltiao", description: "Sombrero tradicional colombiano tejido a mano", price: 95000, category: "accesorios", img: "https://example.com/sombrero.jpg" },
+  { id: 17, name: "Sudadera", description: "Sudadera deportiva para uso casual", price: 130000, category: "ropa", img: "https://example.com/sudadera.jpg" },
+  { id: 18, name: "Camisa formal", description: "Camisa elegante para ocasiones especiales", price: 160000, category: "ropa", img: "https://example.com/camisa.jpg" },
+  { id: 19, name: "Vestido casual", description: "Vestido ligero para uso diario", price: 140000, category: "ropa", img: "https://m.media-amazon.com/images/I/717jrKFh9yL._AC_UY1000_.jpg" },
+  { id: 20, name: "Balón de fútbol", description: "Balón oficial para entrenamientos y partidos", price: 80000, category: "deportes", img: "https://assets.adidas.com/images/w_600,f_auto,q_auto/da13fc00f4c04adea8ce517804ec8bd3_9366/Balon_League_de_la_Copa_Mundial_de_la_FIFA_2026tm_Blanco_JD8045.jpg" },
+  { id: 21, name: "Muñeca tipo Barbie", description: "Muñeca articulada con accesorios incluidos", price: 95000, category: "juguetes", img: "https://i.pinimg.com/474x/eb/37/b3/eb37b32355bc617a78b53ed485783dba.jpg" },
+  { id: 22, name: "Carrito a control remoto", description: "Carro eléctrico con control remoto para niños", price: 120000, category: "juguetes", img: "https://pbs.twimg.com/media/FircqQOXEAACPmx.jpg" },
+  { id: 23, name: "Juego de bloques tipo Lego", description: "Set de bloques para construir y estimular la creatividad", price: 150000, category: "juguetes", img: "https://pyrocol.net/wp-content/uploads/2019/11/VOLADOR-5G-2025-Photoroom-1000x743.jpg" },
+  { id: 25, name: "Voladores", description: "Polvora \"El que se asusta, se quema\"", price: 50000, category: "juguetes", img: "https://pyrocol.net/wp-content/uploads/2019/11/VOLADOR-5G-2025-Photoroom-1000x743.jpg" }
 ];
 
-// -------------------------
+// =======================
 // Funciones utilitarias
-// -------------------------
-function showScreen(name){
+// =======================
+function showScreen(name) {
   Object.values(screens).forEach(s => s.classList.add('hidden'));
   screens[name].classList.remove('hidden');
 }
 
-function renderProducts(list){
+function renderProducts(list) {
   productsGrid.innerHTML = "";
   list.forEach(p => {
     const card = document.createElement('div');
@@ -233,7 +186,7 @@ function renderProducts(list){
   });
 }
 
-function renderCart(){
+function renderCart() {
   cartItems.innerHTML = "";
   cart.forEach(item => {
     const row = document.createElement('div');
@@ -247,11 +200,11 @@ function renderCart(){
   cartCount.textContent = cart.length;
 }
 
-function showDetail(product){
+function showDetail(product) {
   showScreen('detail');
   document.getElementById('detail-title').textContent = product.name;
   document.getElementById('detail-image').src = product.img;
-  document.getElementById('detail-description').textContent = product.desc;
+  document.getElementById('detail-description').textContent = product.description;
   document.getElementById('detail-price').textContent = "$" + product.price;
 
   document.getElementById('detail-add').onclick = () => {
@@ -264,14 +217,22 @@ function showDetail(product){
   };
 }
 
-// -------------------------
+// =======================
+// Pantalla Usuario
+// =======================
+function mostrarUsuario() {
+  showScreen('user');
+  userAddressText.textContent = currentAddress || "No disponible";
+  userEmailText.textContent = currentUser || "No disponible";
+}
+
+// =======================
 // Eventos principales
-// -------------------------
+// =======================
 authForm.addEventListener('submit', e => {
   e.preventDefault();
   currentUser = document.getElementById('email').value;
   document.getElementById('user-info').textContent = currentUser;
-  document.getElementById('user-display-text').textContent = currentUser;
   showScreen('address');
 });
 
@@ -282,7 +243,6 @@ addressForm.addEventListener('submit', e => {
   const num = document.getElementById('addr-num').value;
   const detalle = document.getElementById('addr-detalle').value;
   currentAddress = `${carrera} ${calle} ${num} ${detalle}`;
-  document.getElementById('delivery-address-text').textContent = currentAddress;
   renderProducts(products);
   showScreen('products');
 });
@@ -308,31 +268,37 @@ document.getElementById('checkout-all').addEventListener('click', () => {
   renderCart();
 });
 document.getElementById('back-to-products').addEventListener('click', () => showScreen('products'));
+backFromCart.addEventListener('click', () => showScreen('products'));
+userBtn.addEventListener('click', mostrarUsuario);
+backFromUser.addEventListener('click', () => showScreen('products'));
 
-// Flecha retroceso en carrito
-document.getElementById('back-to-products-from-cart').addEventListener('click', () => {
-  showScreen('products');
-});
+// =======================
+// Barra de búsqueda + Filtro
+// =======================
+function applyFilters() {
+  const term = searchInput.value.toLowerCase();
+  const category = categoryFilter.value;
 
-// -------------------------
-// Barra de búsqueda
-// -------------------------
-const searchInput = document.getElementById('search-input');
-const clearBtn = document.getElementById('clear-search');
+  let filtered = products.filter(p => {
+    const matchesSearch = p.name.toLowerCase().includes(term);
+    const matchesCategory = (category === "all" || p.category === category);
+    return matchesSearch && matchesCategory;
+  });
+
+  renderProducts(filtered);
+}
 
 clearBtn.addEventListener('click', () => {
   searchInput.value = '';
   searchInput.focus();
-  renderProducts(products); // resetear filtro
+  applyFilters(); // resetear filtro y búsqueda
 });
 
-searchInput.addEventListener('input', () => {
-  const term = searchInput.value.toLowerCase();
-  const filtered = products.filter(p => p.name.toLowerCase().includes(term));
-  renderProducts(filtered);
-});
+searchInput.addEventListener('input', applyFilters);
+categoryFilter.addEventListener('change', applyFilters);
 
-// -------------------------
+// =======================
 // Inicialización
-// -------------------------
+// =======================
+renderProducts(products);
 showScreen('login');
