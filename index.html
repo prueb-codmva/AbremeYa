@@ -3,21 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tienda Móvil</title>
+  <title>Tienda Móvil - Ábréme Ya</title>
   <link rel="stylesheet" href="styles.css" />
+  <!-- Fuente moderna -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Íconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <div class="app-bg">
     <main class="container">
       <!-- Pantalla 1: Inicio de sesión -->
       <section id="screen-login" class="screen">
-        <h1 class="app-title">Ábréme Ya</h1>
+        <h1 class="app-title">Ábréme <span class="accent">Ya</span></h1>
         <p class="app-sub">Inicia sesión para comprar</p>
         <form id="auth-form" class="form">
-          <label for="email"></label>
+          <label for="email" class="sr-only">Correo electrónico</label>
           <input id="email" type="email" placeholder="Correo electrónico" required />
 
-          <label for="password"></label>
+          <label for="password" class="sr-only">Contraseña</label>
           <input id="password" type="password" placeholder="Contraseña" required />
 
           <button type="submit" class="btn primary">Iniciar</button>
@@ -26,13 +30,13 @@
 
       <!-- Pantalla 2: Dirección -->
       <section id="screen-address" class="screen hidden">
-        <div class="home-header">
-          <div class="avatar">👤</div>
+        <header class="home-header">
+          <div class="avatar"><i class="fa-solid fa-user"></i></div>
           <div>
             <div id="welcome" class="welcome">Bienvenido</div>
             <div id="user-info" class="user-info"></div>
           </div>
-        </div>
+        </header>
         <form id="address-form" class="address-form">
           <label for="addr-carrera">Dirección de entrega (Antioquia, Caucasia)</label>
           <input id="addr-carrera" type="text" placeholder="Carrera" required />
@@ -45,25 +49,27 @@
 
       <!-- Pantalla 3: Productos -->
       <section id="screen-products" class="screen hidden">
-        <div class="products-header">
+        <header class="products-header">
           <div></div>
-          <div style="display:flex; gap:8px; align-items:center;">
-            <button id="user-btn" type="button" class="btn">👤 Usuario</button>
+          <div class="actions-bar">
+            <button id="user-btn" type="button" class="btn"><i class="fa-solid fa-user"></i> Usuario</button>
             <button id="change-address-btn" type="button" class="btn">Cambiar dirección</button>
             <button id="signout-btn" type="button" class="btn">Cerrar sesión</button>
-            <button id="cart-btn" type="button" class="cart-icon">🛒 <span id="cart-count">0</span></button>
+            <button id="cart-btn" type="button" class="cart-icon">
+              <i class="fa-solid fa-cart-shopping"></i> <span id="cart-count">0</span>
+            </button>
           </div>
-        </div>
+        </header>
 
         <!-- Barra de búsqueda -->
         <div class="search-bar">
           <input id="search-input" type="text" placeholder="Buscar productos..." />
-          <button id="clear-search" type="button" class="clear-btn">✕</button>
+          <button id="clear-search" type="button" class="clear-btn" aria-label="Limpiar búsqueda">✕</button>
         </div>
 
         <!-- Filtro por categoría -->
         <div class="filter-bar">
-          <label for="category-filter" style="color:#fff; font-weight:600; margin-right:8px;">Filtrar por categoría:</label>
+          <label for="category-filter">Filtrar por categoría:</label>
           <select id="category-filter" class="btn">
             <option value="all">Todas</option>
             <option value="telefonos">Teléfonos</option>
@@ -118,3 +124,4 @@
   <script src="app.js"></script>
 </body>
 </html>
+
