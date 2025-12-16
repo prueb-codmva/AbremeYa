@@ -14,10 +14,10 @@
         <h1 class="app-title">Ábréme Ya</h1>
         <p class="app-sub">Inicia sesión para comprar</p>
         <form id="auth-form" class="form">
-          <label for="email">Correo electrónico</label>
+          <label for="email"></label>
           <input id="email" type="email" placeholder="Correo electrónico" required />
 
-          <label for="password">Contraseña</label>
+          <label for="password"></label>
           <input id="password" type="password" placeholder="Contraseña" required />
 
           <button type="submit" class="btn primary">Iniciar</button>
@@ -46,11 +46,9 @@
       <!-- Pantalla 3: Productos -->
       <section id="screen-products" class="screen hidden">
         <div class="products-header">
-          <div>
-            <div id="delivery-address" class="small-note">📍 <span id="delivery-address-text">-</span></div>
-            <div id="user-display" class="small-note">👤 <span id="user-display-text">Usuario</span></div>
-          </div>
+          <div></div>
           <div style="display:flex; gap:8px; align-items:center;">
+            <button id="user-btn" type="button" class="btn">👤 Usuario</button>
             <button id="change-address-btn" type="button" class="btn">Cambiar dirección</button>
             <button id="signout-btn" type="button" class="btn">Cerrar sesión</button>
             <button id="cart-btn" type="button" class="cart-icon">🛒 <span id="cart-count">0</span></button>
@@ -63,7 +61,31 @@
           <button id="clear-search" type="button" class="clear-btn">✕</button>
         </div>
 
+        <!-- Filtro por categoría -->
+        <div class="filter-bar">
+          <label for="category-filter" style="color:#fff; font-weight:600; margin-right:8px;">Filtrar por categoría:</label>
+          <select id="category-filter" class="btn">
+            <option value="all">Todas</option>
+            <option value="telefonos">Teléfonos</option>
+            <option value="ropa">Ropa</option>
+            <option value="accesorios">Accesorios</option>
+            <option value="deportes">Deportes</option>
+            <option value="juguetes">Juguetes</option>
+          </select>
+        </div>
+
         <div id="products-grid" class="products-grid"></div>
+      </section>
+
+      <!-- Pantalla Usuario -->
+      <section id="screen-user" class="screen hidden">
+        <button id="back-to-products-from-user" type="button" class="btn">← Volver al catálogo</button>
+        <h2 class="app-title">Usuario</h2>
+        <p class="app-sub">Información guardada</p>
+        <div class="user-info-block">
+          <p><strong>📍 Dirección:</strong> <span id="user-address-text">No disponible</span></p>
+          <p><strong>👤 Correo:</strong> <span id="user-email-text">No disponible</span></p>
+        </div>
       </section>
 
       <!-- Pantalla Carrito -->
@@ -93,7 +115,6 @@
       </section>
     </main>
   </div>
-  <!-- Archivo JS externo -->
   <script src="app.js"></script>
 </body>
 </html>
